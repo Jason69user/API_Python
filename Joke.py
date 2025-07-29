@@ -10,4 +10,4 @@ if result.status_code == 200:
 else:
     print("Провал, статус код не верный")
 result.encoding = "utf-8" # используем стандартную кодировку
-print(result.text) # выводим текст
+print(result.text) # выводим текст 
