@@ -1,16 +1,18 @@
+import string
+
 import requests
 
 
 class TestCreateJoke():
 
-    url = "https://official-joke-api.appspot.com" # получаем ссылку на ресурс
+    url = "https://api.chucknorris.io" # получаем ссылку на ресурс
 
     def test_create_random_joke(self):
 
         # сохраняем тип в переменную и добавляем в URL
-        types = 'dad'
-        path_random_joke_dad = f"/jokes/{types}/random"
-        url_path_joke = self.url + path_random_joke_dad
+        types = 'religion'
+        path_random_joke_chuck = f"/jokes/random?category={types}"
+        url_path_joke = self.url + path_random_joke_chuck
         print(url_path_joke)
 
         # отправляем запрос GET и выводим его json
@@ -24,10 +26,15 @@ class TestCreateJoke():
 
         # делаем проверку type шутки
         check_joke = result.json()
-        joke_type = check_joke[0].get("type")
+        joke_type = check_joke.get("categories")
         print(joke_type)
-        assert joke_type == types
-        print("Тест прошел успешно ")
+        assert types in joke_type
+        print("Категория корректна")
+
+        # проверка на имя в шутке
+        joke_value = check_joke.get("value")
+        assert "Chuck" in joke_value
+        print("Имя Chuck есть в шутке")
 
 
 start = TestCreateJoke()
