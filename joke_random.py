@@ -15,8 +15,8 @@ class TestCreateJoke():
 
         # отправляем запрос GET, выводим его json и value
         result = requests.get(url_path_joke)
-        print(result.json())
         joke_json = result.json()
+        print(joke_json)
         joke_value = joke_json.get('value')
         print(joke_value)
 
