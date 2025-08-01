@@ -13,9 +13,12 @@ class TestCreateJoke():
         url_path_joke = self.url + path_random_joke_chuck
         print(url_path_joke)
 
-        # отправляем запрос GET и выводим его json
+        # отправляем запрос GET, выводим его json и value
         result = requests.get(url_path_joke)
         print(result.json())
+        joke_json = result.json()
+        joke_value = joke_json.get('value')
+        print(joke_value)
 
         # сверяем статус код с ожидаемым
         print(f"Статус код: {result.status_code}")
@@ -23,14 +26,13 @@ class TestCreateJoke():
         print("Статус-код корректный")
 
         # делаем проверку type шутки
-        check_joke = result.json()
-        joke_type = check_joke.get("categories")
-        print(joke_type)
-        assert types in joke_type
+        check_category = joke_json.get("categories")
+        print(check_category)
+        assert types in check_category
         print("Категория корректна")
 
         # проверка на имя в шутке
-        joke_value = check_joke.get("value")
+        joke_value = joke_json.get("value")
         assert "Chuck" in joke_value
         print("Имя Chuck есть в шутке")
 
