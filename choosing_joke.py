@@ -30,6 +30,7 @@ class TestCreateJoke():
             action = menu_joke.get(enter)
             path_list_categories = self.url + "/jokes/categories"
             result_categories = requests.get(path_list_categories)
+            assert 200 == result_categories.status_code
             categories_json = result_categories.json()
             assert action in categories_json
             print('Есть несколько шуток в этой категории')
@@ -38,6 +39,8 @@ class TestCreateJoke():
             url_path_joke = self.url + f"/jokes/random?category={action}"
             result = requests.get(url_path_joke)
             joke_json = result.json()
+            assert 200 == result.status_code
+            print('200: Статус код верный')
             joke_value = joke_json.get('value')
             print(joke_value)
 
