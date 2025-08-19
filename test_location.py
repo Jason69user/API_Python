@@ -1,10 +1,9 @@
-from tabnanny import check
-
 import requests
 
-class test_new_location():
+class TestNewLocation:
 
-    def create_new_location(self):
+    @staticmethod
+    def create_new_location():
 
         base_url = 'https://rahulshettyacademy.com'
         key = '?key=qaclick123'
@@ -52,5 +51,4 @@ class test_new_location():
                 print(f"place_id {place_id} существует\n")
 
 
-start = test_new_location()
-start.create_new_location()
+TestNewLocation.create_new_location()
